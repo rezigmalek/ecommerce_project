@@ -9,9 +9,16 @@ import Login from './components/admin/Login'
 import { ToastContainer, toast } from 'react-toastify';
 import Dashboard from './components/admin/Dashboard'
 import { AdminRequireAuth } from './components/admin/AdminRequireAuth'
-import Show from './components/admin/category/Show'
-import Create from './components/admin/category/Create'
-import Edit from './components/admin/category/Edit'
+
+import {default as ShowCategories} from './components/admin/category/Show'
+import {default as CreateCategories} from './components/admin/category/Create'
+import {default as EditCategories} from './components/admin/category/Edit'
+
+import {default as ShowBrands} from './components/admin/Brand/Show'
+import {default as CreateBrands} from './components/admin/Brand/Create'
+import {default as EditBrands} from './components/admin/Brand/Edit'
+
+
 function App() {
 
   return (
@@ -29,19 +36,36 @@ function App() {
                 <Dashboard />
               </AdminRequireAuth>
             } />
+
             <Route path="/admin/categories" element={
               <AdminRequireAuth>
-                <Show />
+                <ShowCategories />
               </AdminRequireAuth>
             } />
             <Route path="/admin/categories/create" element={
               <AdminRequireAuth>
-                <Create />
+                <CreateCategories />
               </AdminRequireAuth>
             } />
             <Route path="/admin/categories/edit/:id" element={
               <AdminRequireAuth>
-                <Edit />
+                <EditCategories />
+              </AdminRequireAuth>
+            } />
+
+            <Route path="/admin/brands" element={
+              <AdminRequireAuth>
+                <ShowBrands/>
+              </AdminRequireAuth>
+            } />
+            <Route path="/admin/brands/create" element={
+              <AdminRequireAuth>
+                <CreateBrands />
+              </AdminRequireAuth>
+            } />
+            <Route path="/admin/brands/edit/:id" element={
+              <AdminRequireAuth>
+                <EditBrands />
               </AdminRequireAuth>
             } />
         </Routes>

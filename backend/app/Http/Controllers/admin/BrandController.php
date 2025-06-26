@@ -77,11 +77,6 @@ class BrandController extends Controller
             ], 404);
         }
 
-        return response()->json([
-            'status' => 200,
-            'data' => $brand
-        ]);
-
         $validator = Validator::make(
             $request->all(),
             [
