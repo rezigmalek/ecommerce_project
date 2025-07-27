@@ -131,7 +131,7 @@ const Product = () => {
                         </div>
                     </div>
                     <div className='col-md-7'>
-                        <h2>Dummy product title</h2>
+                        <h2>Veste cuir</h2>
                         <div className='d-flex'>
                             <Rating
                                 size={20}
@@ -141,7 +141,7 @@ const Product = () => {
                             <span className='pt-1 ps-2'>10 Reviews</span>
                         </div>
                         <div className='price h3 py-3'>
-                            $20.00 <span className='text-decoration-line-through'>$28.00</span>
+                            7800.00 DA <span className='text-decoration-line-through'>9800.00 DA</span>
                         </div>
                         <div>
                             Lorem ipsum dolor sit, amet consec adipisicing <br />elit. Cupiditate, quo repellendus. Possimus officia distinctio, beatae odit ducimus pariatur hic aut laudantium sed sunt? Repellat debitis accusamus ipsa ex necessitatibus velit?

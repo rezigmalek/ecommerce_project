@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from './common/Layout'
 import { Link } from 'react-router-dom';
 import ProductImg from '../assets/images/Mens/eight.jpg';
+import ProductImg1 from '../assets/images/Mens/five.jpg';
 import { useState } from 'react';
 
 const Checkout = () => {
@@ -79,9 +80,9 @@ const Checkout = () => {
                                         <img src={ProductImg} width={80} />
                                     </td>
                                     <td width={600}>
-                                        <h4>Dummy product title</h4>
+                                        <h4>Chemise à carreaux</h4>
                                         <div className='d-flex align-items-center pt-3'>
-                                            <span>$10.00</span>
+                                            <span>4500.00 DA</span>
                                             <div className='ps-3'>
                                                 <button className='btn btn-size'>S</button>
                                             </div>
@@ -93,12 +94,12 @@ const Checkout = () => {
                                 </tr>
                                 <tr>
                                     <td width={100}>
-                                        <img src={ProductImg} width={80} />
+                                        <img src={ProductImg1} width={80} />
                                     </td>
                                     <td width={600}>
-                                        <h4>Dummy product title</h4>
+                                        <h4>Veste cuir</h4>
                                         <div className='d-flex align-items-center pt-3'>
-                                            <span>$10.00</span>
+                                            <span>7200.00 DA</span>
                                             <div className='ps-3'>
                                                 <button className='btn btn-size'>S</button>
                                             </div>
@@ -114,17 +115,17 @@ const Checkout = () => {
                             <div className='col-md-12'>
                                 <div className='d-flex justify-content-between border-bottom pb-2'>
                                     <div>Subtotal</div>
-                                    <div>$20.00</div>
+                                    <div>11700.00 DA</div>
                                 </div>
 
                                 <div className='d-flex justify-content-between border-bottom py-2'>
                                     <div>Shipping</div>
-                                    <div>$3.00</div>
+                                    <div>500.00 DA</div>
                                 </div>
 
                                 <div className='d-flex justify-content-between border-bottom py-2'>
                                     <div><strong>Grand Total</strong></div>
-                                    <div>$23.00</div>
+                                    <div>12200.00 DA</div>
                                 </div>
                             </div>
                         </div>

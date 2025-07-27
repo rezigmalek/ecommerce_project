@@ -27,9 +27,9 @@ const Header = () => {
                 
                 navbarScroll
               >
-                <Nav.Link href="#action1">Men</Nav.Link>
-                <Nav.Link href="#action2">Women</Nav.Link>
-                <Nav.Link href="#" >Kids
+                <Nav.Link href="#action1">Hommes</Nav.Link>
+                <Nav.Link href="#action2">Femmes</Nav.Link>
+                <Nav.Link href="#" >Enfants
                 </Nav.Link>
               </Nav>
               <a href="#" className='ms-3'>

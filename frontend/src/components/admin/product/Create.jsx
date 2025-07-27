@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 import Layout from '../../common/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import Sidebar from '../../common/Sidebar'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { apiUrl, adminToken } from '../../common/http'
 import JoditEditor from 'jodit-react';
@@ -13,6 +13,8 @@ const Create = () => {
     const [disable, setDisable] = useState(false);
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
+    const [gallery, setGallery] = useState([]);
+
     const navigate = useNavigate();
 
     const config = useMemo(() => ({
@@ -30,24 +32,24 @@ const Create = () => {
 
     const saveProduct = async (data) => {
         setDisable(true);
-        const formData = new FormData();
+        const formData = {...data, "description": content, "gallery": gallery};
 
-        formData.append('title', data.title);
-        formData.append('price', data.price);
-        formData.append('category', data.category);
-        formData.append('brand', data.brand);
-        formData.append('short_description', data.short_description);
-        formData.append('description', content);
-        formData.append('sku', data.sku);
-        formData.append('barcode', data.barcode);
-        formData.append('qty', data.qty);
-        formData.append('status', data.status);
-        formData.append('is_featured', data.is_featured || 0);
+        // formData.append('title', data.title);
+        // formData.append('price', data.price);
+        // formData.append('category', data.category);
+        // formData.append('brand', data.brand);
+        // formData.append('short_description', data.short_description);
+        // formData.append('description', content);
+        // formData.append('sku', data.sku);
+        // formData.append('barcode', data.barcode);
+        // formData.append('qty', data.qty);
+        // formData.append('status', data.status);
+        // formData.append('is_featured', data.is_featured || 0);
 
-        // image upload (premier fichier seulement)
-        if (data.image && data.image[0]) {
-            formData.append('image', data.image[0]);
-        }
+        // // image upload (premier fichier seulement)
+        // if (data.image && data.image[0]) {
+        //     formData.append('image', data.image[0]);
+        // }
 
         // si tu as une gallery[] à envoyer (IDs de TempImage)
         // Exemple : gallery = [12, 13]
@@ -115,6 +117,31 @@ const Create = () => {
             console.error('Failed to load brands:', error);
         }
     };
+
+    const handleFile = async (e) => {
+        const formData = new FormData();
+        const file = e.target.files[0];
+        formData.append('image', file);
+        setDisable(true);
+
+        try {
+            const response = await fetch(`${apiUrl}/temp-images`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${adminToken()}`
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+            console.log(result);
+            gallery.push(result.data.id);
+            setGallery()
+        } catch (error) {
+            console.error('Failed to upload image', error);
+        }
+    }
 
     useEffect(() => {
         fetchCategories();
@@ -352,12 +379,11 @@ const Create = () => {
                                         <label className="form-label">Image</label>
                                         <input
                                             type='file'
+                                            onChange={handleFile}
                                             className={`form-control ${errors.image ? 'is-invalid' : ''}`}
-                                            {...register('image', {
-                                                required: 'Product image is required'
-                                            })}
+                                            
                                         />
-                                        {errors.image && <span className="text-danger">{errors.image.message}</span>}
+                                        {/* {errors.image && <span className="text-danger">{errors.image.message}</span>} */}
                                     </div>
                                 </div>
                             </div>

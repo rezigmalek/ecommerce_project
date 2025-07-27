@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from './common/Layout'
 import { Link } from 'react-router-dom';
 import ProductImg from '../assets/images/Mens/six.jpg';
+import ProductImg1 from '../assets/images/Mens/nine.jpg';
 
 
 const Cart = () => {
@@ -26,9 +27,9 @@ const Cart = () => {
                                         <img src={ProductImg} width={80} />
                                     </td>
                                     <td width={600}>
-                                        <h4>Dummy product title</h4>
+                                        <h4>T-shirt</h4>
                                         <div className='d-flex align-items-center pt-3'>
-                                            <span>$10.00</span>
+                                            <span>2200.00 DA</span>
                                             <div className='ps-3'>
                                                 <button className='btn btn-size'>S</button>
                                             </div>
@@ -45,12 +46,12 @@ const Cart = () => {
                                 </tr>
                                 <tr>
                                     <td width={100}>
-                                        <img src={ProductImg} width={80} />
+                                        <img src={ProductImg1} width={80} />
                                     </td>
                                     <td width={600}>
-                                        <h4>Dummy product title</h4>
+                                        <h4>Veste jean</h4>
                                         <div className='d-flex align-items-center pt-3'>
-                                            <span>$10.00</span>
+                                            <span>4200.00 DA</span>
                                             <div className='ps-3'>
                                                 <button className='btn btn-size'>S</button>
                                             </div>
@@ -73,17 +74,17 @@ const Cart = () => {
                     <div className='col-md-3'>
                         <div className='d-flex justify-content-between border-bottom pb-2'>
                             <div>Subtotal</div>
-                            <div>$20.00</div>
+                            <div>6400.00 DA</div>
                         </div>
 
                         <div className='d-flex justify-content-between border-bottom py-2'>
                             <div>Shipping</div>
-                            <div>$3.00</div>
+                            <div>400.00 DA</div>
                         </div>
                         
                         <div className='d-flex justify-content-between border-bottom py-2'>
                             <div><strong>Grand Total</strong></div>
-                            <div>$23.00</div>
+                            <div>6800.00 DA</div>
                         </div>
                         <div className='d-flex justify-content-end py-3'>
                             <button className='btn btn-primary'>Proceed To Chekout</button>

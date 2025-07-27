@@ -1,5 +1,8 @@
 import React from 'react'
-import ProductImg from '../../assets/images/Mens/eight.jpg';
+import ProductImg1 from '../../assets/images/Mens/eight.jpg';
+import ProductImg2 from '../../assets/images/Mens/twelve.jpg';
+import ProductImg3 from '../../assets/images/Mens/two.jpg';
+import ProductImg4 from '../../assets/images/Mens/four.jpg';
 
 const LatestProducts = () => {
   return (
@@ -10,12 +13,12 @@ const LatestProducts = () => {
                     <div className='col-md-3 col-6'>
                       <div className='product card border-0'>
                         <div className='card-img'>
-                          <img src={ProductImg} alt="" className='w-100'/>
+                          <img src={ProductImg1} alt="" className='w-100'/>
                         </div>
                         <div className='card-body pt-3'>
-                          <a href="">Red Check Shirt for Men</a>
+                          <a href="">chemise à carreaux</a>
                           <div className='price'>
-                            $50.00 <span className='text-decoration-line-through'>$80.00</span>
+                            4500.00 DA <span className='text-decoration-line-through'>5200.00 DA</span>
                           </div>
                         </div>
                       </div>
@@ -23,12 +26,12 @@ const LatestProducts = () => {
                     <div className='col-md-3 col-6'>
                       <div className='product card border-0'>
                         <div className='card-img'>
-                          <img src={ProductImg} alt="" className='w-100'/>
+                          <img src={ProductImg2} alt="" className='w-100'/>
                         </div>
                         <div className='card-body pt-3'>
-                          <a href="">Red Check Shirt for Men</a>
+                          <a href="">Chemise</a>
                           <div className='price'>
-                            $50.00 <span className='text-decoration-line-through'>$80.00</span>
+                            8900.00 DA <span className='text-decoration-line-through'>9900.00 DA</span>
                           </div>
                         </div>
                       </div>
@@ -36,12 +39,12 @@ const LatestProducts = () => {
                     <div className='col-md-3 col-6'>
                       <div className='product card border-0'>
                         <div className='card-img'>
-                          <img src={ProductImg} alt="" className='w-100'/>
+                          <img src={ProductImg3} alt="" className='w-100'/>
                         </div>
                         <div className='card-body pt-3'>
-                          <a href="">Red Check Shirt for Men</a>
+                          <a href="">lunettes de soleil</a>
                           <div className='price'>
-                            $50.00 <span className='text-decoration-line-through'>$80.00</span>
+                            4800.00 DA <span className='text-decoration-line-through'>6200.00 DA</span>
                           </div>
                         </div>
                       </div>
@@ -49,12 +52,12 @@ const LatestProducts = () => {
                     <div className='col-md-3 col-6'>
                       <div className='product card border-0'>
                         <div className='card-img'>
-                          <img src={ProductImg} alt="" className='w-100'/>
+                          <img src={ProductImg4} alt="" className='w-100'/>
                         </div>
                         <div className='card-body pt-3'>
-                          <a href="">Red Check Shirt for Men</a>
+                          <a href="">sweat sans capuche</a>
                           <div className='price'>
-                            $50.00 <span className='text-decoration-line-through'>$80.00</span>
+                            4200.00 DA <span className='text-decoration-line-through'>5800.00 DA</span>
                           </div>
                         </div>
                       </div>
