@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 import Layout from '../../common/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import Sidebar from '../../common/Sidebar'
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form' // ✅ correction ici
 import { toast } from 'react-toastify'
 import { apiUrl, adminToken } from '../../common/http'
-import JoditEditor from 'jodit-react';
+import JoditEditor from 'jodit-react'
 
 const Create = () => {
     const editor = useRef(null);
@@ -32,34 +32,32 @@ const Create = () => {
 
     const saveProduct = async (data) => {
         setDisable(true);
-        const formData = {...data, "description": content, "gallery": gallery};
+        const formData = new FormData();
 
-        // formData.append('title', data.title);
-        // formData.append('price', data.price);
-        // formData.append('category', data.category);
-        // formData.append('brand', data.brand);
-        // formData.append('short_description', data.short_description);
-        // formData.append('description', content);
-        // formData.append('sku', data.sku);
-        // formData.append('barcode', data.barcode);
-        // formData.append('qty', data.qty);
-        // formData.append('status', data.status);
-        // formData.append('is_featured', data.is_featured || 0);
+        formData.append('title', data.title);
+        formData.append('price', data.price);
+        formData.append('compare_price', data.compare_price || '');
+        formData.append('category', data.category);
+        formData.append('brand', data.brand);
+        formData.append('short_description', data.short_description);
+        formData.append('description', content);
+        formData.append('sku', data.sku);
+        formData.append('barcode', data.barcode);
+        formData.append('qty', data.qty);
+        formData.append('status', data.status);
+        formData.append('is_featured', data.is_featured || 0);
 
-        // // image upload (premier fichier seulement)
-        // if (data.image && data.image[0]) {
-        //     formData.append('image', data.image[0]);
-        // }
+        if (data.image && data.image[0]) {
+            formData.append('image', data.image[0]);
+        }
 
-        // si tu as une gallery[] à envoyer (IDs de TempImage)
-        // Exemple : gallery = [12, 13]
-        // gallery.forEach(id => formData.append('gallery[]', id));
+        gallery.forEach(id => formData.append('gallery[]', id));
 
         try {
             const response = await fetch(`${apiUrl}/products`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${adminToken()}`, // PAS de Content-Type ici, FormData le fait tout seul
+                    'Authorization': `Bearer ${adminToken()}`
                 },
                 body: formData
             });
@@ -86,7 +84,6 @@ const Create = () => {
             toast.error('Network error. Please try again.');
         }
     };
-
 
     const fetchCategories = async () => {
         try {
@@ -122,7 +119,6 @@ const Create = () => {
         const formData = new FormData();
         const file = e.target.files[0];
         formData.append('image', file);
-        setDisable(true);
 
         try {
             const response = await fetch(`${apiUrl}/temp-images`, {
@@ -136,8 +132,7 @@ const Create = () => {
 
             const result = await response.json();
             console.log(result);
-            gallery.push(result.data.id);
-            setGallery()
+            setGallery([...gallery, result.data.id]); // ✅ correction ici
         } catch (error) {
             console.error('Failed to upload image', error);
         }
@@ -241,14 +236,12 @@ const Create = () => {
 
                                     <div className='mb-3'>
                                         <label className="form-label">Description</label>
-                                        <JoditEditor className={`form-control ${errors.description ? 'is-invalid' : ''}`}
+                                        <JoditEditor
                                             ref={editor}
                                             value={content}
                                             config={config}
                                             tabIndex={1}
                                             onBlur={newContent => setContent(newContent)}
-                                            {...register('description', {
-                                            })}
                                         />
                                     </div>
 
@@ -278,7 +271,7 @@ const Create = () => {
                                                 <input
                                                     type='text'
                                                     placeholder='Discounted Price'
-                                                    className={`form-control ${errors.discounted_price ? 'is-invalid' : ''}`}
+                                                    className={`form-control ${errors.compare_price ? 'is-invalid' : ''}`} // ✅ corrigé
                                                     {...register('compare_price', {
                                                         pattern: {
                                                             value: /^[0-9]+(\.[0-9]{1,2})?$/,
@@ -286,7 +279,7 @@ const Create = () => {
                                                         }
                                                     })}
                                                 />
-                                                {errors.discounted_price && <span className="text-danger">{errors.discounted_price.message}</span>}
+                                                {errors.compare_price && <span className="text-danger">{errors.compare_price.message}</span>}
                                             </div>
                                         </div>
                                     </div>
@@ -330,7 +323,7 @@ const Create = () => {
                                                 <input
                                                     type='text'
                                                     placeholder='Quantity'
-                                                    className={`form-control ${errors.quantity ? 'is-invalid' : ''}`}
+                                                    className={`form-control ${errors.qty ? 'is-invalid' : ''}`}
                                                     {...register('qty', {
                                                         required: 'Quantity is required',
                                                         pattern: {
@@ -339,7 +332,7 @@ const Create = () => {
                                                         }
                                                     })}
                                                 />
-                                                {errors.quantity && <span className="text-danger">{errors.quantity.message}</span>}
+                                                {errors.qty && <span className="text-danger">{errors.qty.message}</span>}
                                             </div>
                                         </div>
                                         <div className='col-md-6'>
@@ -361,17 +354,18 @@ const Create = () => {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className='mb-3'>
-                                            <label htmlFor="status" className="form-label">Featured</label>
-                                            <select
-                                                id="status"
-                                                className={`form-control ${errors.status ? 'is-invalid' : ''}`}
-                                                {...register('is_featured', {
-                                                })} >
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
-                                            </select>
-                                        </div>
+                                    </div>
+
+                                    <div className='mb-3'>
+                                        <label htmlFor="is_featured" className="form-label">Featured</label>
+                                        <select
+                                            id="is_featured"
+                                            className="form-control"
+                                            {...register('is_featured')}
+                                        >
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
                                     </div>
 
                                     <h3 className="py-3 border-bottom mb-3">Gallery</h3>
@@ -380,10 +374,8 @@ const Create = () => {
                                         <input
                                             type='file'
                                             onChange={handleFile}
-                                            className={`form-control ${errors.image ? 'is-invalid' : ''}`}
-                                            
+                                            className="form-control"
                                         />
-                                        {/* {errors.image && <span className="text-danger">{errors.image.message}</span>} */}
                                     </div>
                                 </div>
                             </div>
@@ -396,4 +388,4 @@ const Create = () => {
     )
 }
 
-export default Create;
+export default Create
