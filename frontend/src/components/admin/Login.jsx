@@ -8,7 +8,7 @@ import { AdminAuthContext } from '../context/AdminAuth';
 
 
 const Login = () => {
-    const {login} = useContext(AdminAuthContext);
+    const { login } = useContext(AdminAuthContext);
     const {
         register,
         handleSubmit,
@@ -28,28 +28,28 @@ const Login = () => {
             },
             body: JSON.stringify(data)
         }).then(res => res.json())
-        .then(result => {
-            console.log(result)
-            if (result.status == 200) {
-                const adminInfo = {
-                    token: result.token,
-                    id: result.id,
-                    name: result.name,
+            .then(result => {
+                console.log(result)
+                if (result.status == 200) {
+                    const adminInfo = {
+                        token: result.token,
+                        id: result.id,
+                        name: result.name,
+                    }
+                    localStorage.setItem('adminInfo', JSON.stringify(adminInfo));
+
+                    login(adminInfo);
+
+                    navigate('/admin/dashboard');
+
+
+                    // localStorage.setItem('adminToken', result.token);
+                    // window.location.href = '/admin/dashboard';
+                } else {
+                    toast.error(result.message);
                 }
-                localStorage.setItem('adminInfo', JSON.stringify(adminInfo));
 
-                login(adminInfo);
-
-                navigate('/admin/dashboard');
-
-
-                // localStorage.setItem('adminToken', result.token);
-                // window.location.href = '/admin/dashboard';
-            } else {
-                toast.error(result.message);
-            }
-            
-        })
+            })
     }
 
     return (

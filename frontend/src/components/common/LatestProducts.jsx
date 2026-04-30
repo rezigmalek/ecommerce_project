@@ -6,7 +6,7 @@ import ProductImg4 from '../../assets/images/Mens/four.jpg';
 
 const LatestProducts = () => {
   return (
-        <section className='section-2 pt-5'>
+          <section className='section-2 pt-5'>
                 <div className='container'>
                   <h2>New arrivals</h2>
                   <div className='row mt-4'>
@@ -64,7 +64,7 @@ const LatestProducts = () => {
                     </div>
                   </div>
                 </div>
-              </section>
+        </section>
   )
 }
 

@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className='shadow'>
       <div className='bg-dark text-center py-3'>
-        <span className='text-white'>Your fashion partener</span>
+        <span className='text-white'>Your fashion partner</span>
       </div>
       <div className='container'>
         <Navbar expand="lg" className="">
